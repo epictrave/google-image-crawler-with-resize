@@ -35,7 +35,7 @@ CONFIGS[u'num_downloads_for_each_class'] = int(sys.argv[2])
 CONFIGS[u'search_file_type'] = 'png'
 CONFIGS[u'search_cdr_days'] = 100
 
-CONFIGS[u'search_keywords_dict'] = {sys.argv[1]:[unicode(sys.argv[1])]}
+CONFIGS[u'search_keywords_dict'] = {sys.argv[3]:[unicode(sys.argv[1])]}
 CONFIGS[u'save_dir'] = './'
 print('==>CONFIGS:')
 print(CONFIGS)
@@ -275,18 +275,21 @@ def isNumber(s):
   except ValueError:
     return False
 ############## Main Program ############
-if len(sys.argv) != 3:          
-    print('Usage python imageCrawler.py [Keyword] [Number(int)]')
+if len(sys.argv) != 4:          
+    print('[Usage] python imageCrawler.py [Keyword] [Number(int)] [Save folder Name]')
     exit(1)
 elif not type(sys.argv[1]) is str : 
-    print('Usage python imageCrawler.py [Keyword] [Number(int)]')
+    print('[Usage] python imageCrawler.py [Keyword] [Number(int)] [Save folder Name]')
     exit(1)
 elif not isNumber(sys.argv[2]):
-    print('Usage python imageCrawler.py [Keyword] [Number(int)]')
+    print('[Usage] python imageCrawler.py [Keyword] [Number(int)] [Save folder Name]')
+    exit(1)
+elif not type(sys.argv[3]) is str : 
+    print('[Usage] python imageCrawler.py [Keyword] [Number(int)] [Save folder Name]')
     exit(1)
 
 t0 = time.time()   #start the timer
-folder_path = './' + sys.argv[1] + '/'
+folder_path = './' + sys.argv[3] + '/'
 if not os.path.exists(folder_path):
     os.makedirs(folder_path)
 file_list = os.listdir(folder_path)

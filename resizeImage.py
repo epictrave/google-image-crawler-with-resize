@@ -13,16 +13,16 @@ def isNumber(s):
     return False
 
 if len(sys.argv) != 4:          
-    print('Usage python resizeImage.py [folderName] [width] [height]')
+    print('[Usage] python resizeImage.py [folderName] [width(int)] [height(int)]')
     exit(1)
 elif not type(sys.argv[1]) is str : 
-    print('Usage python resizeImage.py [folderName] [width] [height]')
+    print('[Usage] python resizeImage.py [folderName] [width(int)] [height(int)]')
     exit(1)
 elif not isNumber(sys.argv[2]):
-    print('Usage python resizeImage.py [folderName] [width] [height]')
+    print('[Usage] python resizeImage.py [folderName] [width(int)] [height(int)]')
     exit(1)
 elif not isNumber(sys.argv[3]):
-    print('Usage python resizeImage.py [folderName] [width] [height]')
+    print('[Usage] python resizeImage.py [folderName] [width(int)] [height(int)]')
     exit(1)
 original_path = './' + sys.argv[1] +'/'
 resized_path = './ResizedImages/' + sys.argv[1] + '/'
