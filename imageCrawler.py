@@ -22,7 +22,7 @@ except ImportError:
 import datetime
 import hashlib
 from collections import OrderedDict
-
+import ssl
 ########### Default CONFIGS ###########
 CONFIGS = {}
 
@@ -137,13 +137,25 @@ def google_get_query_url(keyword, file_type, cdr):
 def google_download_page(url):
     version = (3,0)
     cur_version = sys.version_info
+    ctx = ssl.create_default_context()
+    ctx.check_hostname = False
+    ctx.verify_mode = ssl.CERT_NONE
+    if (not os.environ.get('PYTHONHTTPSVERIFY', '') and
+        getattr(ssl, '_create_unverified_context', None)): 
+        ssl._create_default_https_context = ssl._create_unverified_context
+
+
+
+
+
+
     if cur_version >= version:     #If the Current Version of Python is 3.0 or above
         import urllib.request    #urllib library for Extracting web pages
         try:
             headers = {}
             headers['User-Agent'] = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36"
             req = urllib.request.Request(url, headers = headers)
-            resp = urllib.request.urlopen(req)
+            resp = urllib.request.urlopen(req, context=ctx)
             respData = str(resp.read())
             return respData
         except Exception as e:
