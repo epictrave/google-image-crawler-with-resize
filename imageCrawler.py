@@ -124,8 +124,7 @@ def google_get_query_url(keyword, file_type, cdr):
         
     query = dict(q = keyword, 
                  tbm = 'isch',
-                 tbs=cdr+',ift:'+file_type)
-    
+                 tbs=cdr+',ift:'+file_type+',itp:photo,ic:color')
     #url = 'https://www.google.com/search?q=' + keyword + '&espv=2&biw=1366&bih=667&site=webhp&source=lnms&tbm=isch&sa=X&ei=XosDVaCXD8TasATItgE&ved=0CAcQ_AUoAg'
     #url = 'https://www.google.com/search?as_oq=' + keyword + '&as_st=y&tbm=isch&safe=images&tbs=ift:jpg'
     url = 'https://www.google.com/search?'+urlencode(query)
@@ -257,7 +256,7 @@ def download_image(url, save_dir, loaded_urls=None):
         else:
             img_name = str(time.time())[-10:]
             save_image_name = save_dir + '/' + img_name + '.' + CONFIGS[u'search_file_type']
-            print('r save # '+ str(image_number)+ ' image\'s url: ' + real_url + '\ninto file: ' +  save_image_name)
+            print('try to save # '+ str(image_number)+ ' image\'s url: ' + real_url + '\ninto file: ' +  save_image_name)
             output_file = open(save_image_name,'wb')
             data = response.read()
             output_file.write(data)
